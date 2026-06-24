@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   host: 'mysql-7663822-dynamicresume051.h.aivencloud.com',
   port: 25293,
   user: 'avnadmin',
-  password: 'AVNS_37nxFo-evRqlbjbbfWm',
+  password: `process.env.DB_PASSWORD`,
   database: 'defaultdb',
   multipleStatements: true
   
