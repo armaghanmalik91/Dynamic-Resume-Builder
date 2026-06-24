@@ -539,7 +539,7 @@
 
                     <div class="social-box">
                         <div id="g_id_onload"
-                             data-client_id="615594594123-gj47ee9p3fcelurfhn8un0tbrat8ih3a.apps.googleusercontent.com"
+                             data-client_id="783911901039-di5j465edrasqhl2r7cg760drhlpn6bc.apps.googleusercontent.com"
                              data-context="signin"
                              data-ux_mode="popup"
                              data-callback="handleGoogleCredentialResponse"
