@@ -1,0 +1,42 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Backend env
+dynamic-resume-backend/.env
+
+# Frontend env
+dynamic-resume-frontend/.env
+
+# Node dependencies
+node_modules/
+dynamic-resume-backend/node_modules/
+dynamic-resume-frontend/node_modules/
+
+# Laravel dependencies
+vendor/
+dynamic-resume-frontend/vendor/
+
+# Laravel cache/session/views
+dynamic-resume-frontend/storage/framework/cache/*
+dynamic-resume-frontend/storage/framework/sessions/*
+dynamic-resume-frontend/storage/framework/views/*
+dynamic-resume-frontend/bootstrap/cache/*.php
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build files
+dist/
+build/
+dynamic-resume-frontend/public/build/
