@@ -202,7 +202,7 @@
 
         async function fetchMetrics() { 
             try { 
-                const response = await fetch(`http://localhost:5000/api/jobs/metrics?mode=saved`, { 
+                const response = await fetch(`https://resume-backend-54se.onrender.com/api/jobs/metrics?mode=saved`, { 
                     method: 'GET', 
                     headers: { 'Authorization': 'Bearer ' + token } 
                 }); 
@@ -212,7 +212,7 @@
                     savedJobIds = data.jobs.map(j => j.id);
                     
                     // Fetch real current view counters sync
-                    const realMetricResp = await fetch(`http://localhost:5000/api/jobs/metrics?mode=${viewMode}`, {
+                    const realMetricResp = await fetch(`https://resume-backend-54se.onrender.com/api/jobs/metrics?mode=${viewMode}`, {
                         method: 'GET',
                         headers: { 'Authorization': 'Bearer ' + token }
                     });
@@ -260,7 +260,7 @@
              
             try { 
                 // Fetch user metrics first to ensure savedJobIds sync is fresh for render cards
-                const metricSync = await fetch(`http://localhost:5000/api/jobs/metrics?mode=saved`, { 
+                const metricSync = await fetch(`https://resume-backend-54se.onrender.com/api/jobs/metrics?mode=saved`, { 
                     method: 'GET', 
                     headers: { 'Authorization': 'Bearer ' + token } 
                 });
@@ -269,7 +269,7 @@
                     savedJobIds = metricData.jobs.map(j => j.id);
                 }
 
-                const url = `http://localhost:5000/api/jobs/search?keyword=${encodeURIComponent(keyword)}&location=${encodeURIComponent(location)}&distance=${encodeURIComponent(selectedDistance)}&timeRange=${encodeURIComponent(selectedTimeRange)}&sortBy=${encodeURIComponent(selectedSortMode)}&page=${currentPage}`; 
+                const url = `https://resume-backend-54se.onrender.com/api/jobs/search?keyword=${encodeURIComponent(keyword)}&location=${encodeURIComponent(location)}&distance=${encodeURIComponent(selectedDistance)}&timeRange=${encodeURIComponent(selectedTimeRange)}&sortBy=${encodeURIComponent(selectedSortMode)}&page=${currentPage}`; 
                  
                 const response = await fetch(url, { 
                     method: 'GET', 
@@ -395,7 +395,7 @@
         async function saveJob(e, jobId, element) { 
             e.stopPropagation(); 
             try { 
-                const response = await fetch('http://localhost:5000/api/jobs/save', { 
+                const response = await fetch('https://resume-backend-54se.onrender.com/api/jobs/save', { 
                     method: 'POST', 
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }, 
                     body: JSON.stringify({ job_id: jobId }) 
@@ -416,7 +416,7 @@
                         fetchMetrics();
                     } else {
                         // Just update top dynamic counters smoothly
-                        const countSync = await fetch(`http://localhost:5000/api/jobs/metrics?mode=saved`, { method: 'GET', headers: { 'Authorization': 'Bearer ' + token } });
+                        const countSync = await fetch(`https://resume-backend-54se.onrender.com/api/jobs/metrics?mode=saved`, { method: 'GET', headers: { 'Authorization': 'Bearer ' + token } });
                         const cData = await countSync.json();
                         if(cData.success) {
                             savedJobIds = cData.jobs.map(j => j.id);
@@ -431,7 +431,7 @@
             buttonEl.disabled = true; 
             buttonEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Submitting...'; 
             try { 
-                const response = await fetch('http://localhost:5000/api/jobs/apply', { 
+                const response = await fetch('https://resume-backend-54se.onrender.com/api/jobs/apply', { 
                     method: 'POST', 
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }, 
                     body: JSON.stringify({ job_id: jobId }) 

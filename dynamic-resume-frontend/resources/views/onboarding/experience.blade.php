@@ -685,7 +685,7 @@
                     payload.more_than_20_years = moreThanTwentyYears;
                 }
 
-                const response = await fetch('http://localhost:5000/api/auth/onboarding', {
+                const response = await fetch('https://resume-backend-54se.onrender.com/api/auth/onboarding', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

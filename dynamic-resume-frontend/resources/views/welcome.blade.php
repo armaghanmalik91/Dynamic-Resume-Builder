@@ -2919,7 +2919,7 @@ async function handleAdminLogin(e) {
     }
 
     try {
-        const res = await fetch("http://localhost:5000/api/admin/auth/login", {
+        const res = await fetch("https://resume-backend-54se.onrender.com/api/admin/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -2955,7 +2955,7 @@ async function handleForgotRequest(e) {
     console.log("Sending recovery code to:", email); // Debugging
     
     try { 
-        const res = await fetch('http://localhost:5000/api/admin/auth/forgot-key', { 
+        const res = await fetch('https://resume-backend-54se.onrender.com/api/admin/auth/forgot-key', { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify({ email }) 
@@ -2982,7 +2982,7 @@ async function handleVerifyToken(e) {
     const otp = document.getElementById('verifyOtp').value.trim();
 
     try {
-        const res = await fetch('http://localhost:5000/api/admin/auth/verify-key', {
+        const res = await fetch('https://resume-backend-54se.onrender.com/api/admin/auth/verify-key', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -3014,7 +3014,7 @@ async function handlePasswordUpdate(e) {
     if (newPass !== confirmPass) { alert("Security validation failed: Key values do not match."); return; }
 
     try {
-        const res = await fetch('http://localhost:5000/api/admin/auth/reset-key', {
+        const res = await fetch('https://resume-backend-54se.onrender.com/api/admin/auth/reset-key', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

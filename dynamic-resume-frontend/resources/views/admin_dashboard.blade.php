@@ -110,7 +110,7 @@
     formData.append("templateImage", file);
 
     try {
-        const response = await fetch("http://localhost:5000/api/templates/upload", {
+        const response = await fetch("https://resume-backend-54se.onrender.com/api/templates/upload", {
             method: "POST",
             body: formData
         });

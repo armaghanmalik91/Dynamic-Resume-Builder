@@ -893,7 +893,7 @@
             }
 
             try {
-                const res = await fetch('http://localhost:5000/api/auth/register', {
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, password })
@@ -934,7 +934,7 @@
 
                 try {
                     // Original API verification logic preserved
-                    const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+                    const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/verify-otp', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email, otp })
@@ -969,7 +969,7 @@
             const password = document.getElementById('loginPassword').value;
 
             try {
-                const res = await fetch('http://localhost:5000/api/auth/login', {
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -1037,7 +1037,7 @@
                 const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
 
                 try {
-                    const res = await fetch('http://localhost:5000/api/auth/forgot-password', {
+                    const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/forgot-password', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email })
@@ -1069,7 +1069,7 @@
                 const otp = document.getElementById('forgotCode').value.trim();
 
                 try {
-                    const res = await fetch('http://localhost:5000/api/auth/verify-reset-code', {
+                    const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/verify-reset-code', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: resetEmailValue, otp })
@@ -1102,7 +1102,7 @@
                 const confirmPassword = document.getElementById('confirmNewPassword').value;
 
                 try {
-                    const res = await fetch('http://localhost:5000/api/auth/reset-password', {
+                    const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/reset-password', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -1157,7 +1157,7 @@
             showMessage('Verifying Google Account...', true);
 
             try {
-                const res = await fetch('http://localhost:5000/api/auth/google', {
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/auth/google', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ token: response.credential })

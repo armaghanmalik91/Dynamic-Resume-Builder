@@ -1791,7 +1791,7 @@
         async function loadResumeData() {
             try {
                 // Node.js Backend API Call `getResume` humne banayi thi
-                const res = await fetch(`http://localhost:5000/api/resumes/get/${resumeId}`, {
+                const res = await fetch(`https://resume-backend-54se.onrender.com/api/resumes/get/${resumeId}`, {
                     headers: { 'Authorization': 'Bearer ' + token }
                 });
                 const data = await res.json();
@@ -1820,7 +1820,7 @@
                     
                     // Agar resume me Name available nahi hai, tabhi auth profile fetch karein fallback ke liye
                     if (!r.first_name && !r.email) {
-                        const profileRes = await fetch('http://localhost:5000/api/auth/profile', {
+                        const profileRes = await fetch('https://resume-backend-54se.onrender.com/api/auth/profile', {
                             headers: { 'Authorization': 'Bearer ' + token }
                         });
                         const profileData = await profileRes.json();
@@ -1847,10 +1847,10 @@ function getTemplateImageUrl(thumbnail) {
     }
 
     if (thumbnail.startsWith("/uploads")) {
-        return "http://localhost:5000" + thumbnail;
+        return "https://resume-backend-54se.onrender.com" + thumbnail;
     }
 
-    return "http://localhost:5000/uploads/templates/" + thumbnail;
+    return "https://resume-backend-54se.onrender.com/uploads/templates/" + thumbnail;
 }
 
 function setSelectedTemplateLivePreview(thumbnail) {
@@ -1928,7 +1928,7 @@ async function updateSelectedTemplateFromPreview(template) {
     }
 
     try {
-        const res = await fetch("http://localhost:5000/api/resumes/update-template", {
+        const res = await fetch("https://resume-backend-54se.onrender.com/api/resumes/update-template", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -2029,7 +2029,7 @@ async function updateSelectedTemplateFromPreview(template) {
             };
             try {
                 // API Call
-                const res = await fetch('http://localhost:5000/api/resumes/update-contact', {
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/resumes/update-contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
                     body: JSON.stringify(payload)
@@ -2069,7 +2069,7 @@ async function updateSelectedTemplateFromPreview(template) {
         }
         function getTemplateImageUrl(thumbnail) {
             if (!thumbnail) return '';
-            return thumbnail.startsWith('http') ? thumbnail : 'http://localhost:5000' + thumbnail;
+            return thumbnail.startsWith('http') ? thumbnail : 'https://resume-backend-54se.onrender.com' + thumbnail;
         }
         function setImageOrFallback(img, fallback, thumbnail) {
             if (!img) return;
@@ -2100,7 +2100,7 @@ async function updateSelectedTemplateFromPreview(template) {
                 return;
             }
 
-            const imageUrl = thumbnail && thumbnail.startsWith('http') ? thumbnail : (thumbnail ? 'http://localhost:5000' + thumbnail : '');
+            const imageUrl = thumbnail && thumbnail.startsWith('http') ? thumbnail : (thumbnail ? 'https://resume-backend-54se.onrender.com' + thumbnail : '');
             [
                 [miniImg, miniFallback],
                 [modalImg, modalFallback]
@@ -2212,7 +2212,7 @@ async function updateSelectedTemplateFromPreview(template) {
         }
         async function loadResumeTemplateForModal() {
             try {
-                const res = await fetch(`http://localhost:5000/api/resumes/get/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
+                const res = await fetch(`https://resume-backend-54se.onrender.com/api/resumes/get/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
                 const data = await res.json();
                 if (data.success && data.resume) {
                     if (data.resume.template_key || data.resume.template_id) localStorage.setItem('selected_template', data.resume.template_key || data.resume.template_id);
@@ -2230,7 +2230,7 @@ async function updateSelectedTemplateFromPreview(template) {
             changeTemplateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Updating...';
             changeTemplateBtn.disabled = true;
             try {
-                const res = await fetch('http://localhost:5000/api/resumes/update-template', {
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/resumes/update-template', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
                     body: JSON.stringify({ resume_id: resumeId, template_id: getTemplateKeyValue(pendingPreviewTemplate) })
@@ -2268,7 +2268,7 @@ async function updateSelectedTemplateFromPreview(template) {
             syncBigPreviewContact();
             await loadResumeTemplateForModal();
             try {
-                const res = await fetch('http://localhost:5000/api/templates/all');
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/templates/all');
                 const data = await res.json();
                 previewTemplatesCache = data.success ? (data.templates || []) : [];
                 if (!previewTemplatesCache.length) dynamicTemplatesGrid.innerHTML = '<div class="text-center text-sm text-gray-400 py-10 w-full col-span-2">No templates found.</div>';
@@ -2315,14 +2315,14 @@ async function updateSelectedTemplateFromPreview(template) {
             }
 
             if (clean.startsWith("/uploads/")) {
-                return "http://localhost:5000" + clean;
+                return "https://resume-backend-54se.onrender.com" + clean;
             }
 
             if (clean.startsWith("uploads/")) {
-                return "http://localhost:5000/" + clean;
+                return "https://resume-backend-54se.onrender.com/" + clean;
             }
 
-            return "http://localhost:5000/uploads/templates/" + clean;
+            return "https://resume-backend-54se.onrender.com/uploads/templates/" + clean;
         }
 
         function resolveElement(ref) {
@@ -2411,7 +2411,7 @@ async function updateSelectedTemplateFromPreview(template) {
             }
 
             try {
-                const res = await fetch("http://localhost:5000/api/templates/all");
+                const res = await fetch("https://resume-backend-54se.onrender.com/api/templates/all");
                 const data = await res.json();
 
                 if (!data.success || !Array.isArray(data.templates)) {
@@ -2513,7 +2513,7 @@ async function updateSelectedTemplateFromPreview(template) {
 
     
         /* FINAL FIX: robust selected-template image resolver for live preview + modal */
-        const TEMPLATE_API_BASE_FINAL = "http://localhost:5000";
+        const TEMPLATE_API_BASE_FINAL = "https://resume-backend-54se.onrender.com";
 
         function finalTemplateUrl(thumbnail) {
             if (!thumbnail) return "";
@@ -3732,7 +3732,7 @@ p.text-red-500{margin:0 0 16px!important;color:#ef4444!important;font-size:12px!
         const phoneCode = document.getElementById("inp_country_code")?.value || "";
 
         try {
-            const res = await fetch("http://localhost:5000/api/resumes/update-contact", {
+            const res = await fetch("https://resume-backend-54se.onrender.com/api/resumes/update-contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

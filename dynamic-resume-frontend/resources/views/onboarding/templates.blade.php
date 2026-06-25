@@ -335,7 +335,7 @@
             filteredTemplates.forEach((template) => {
                 const imageUrl = template.thumbnail_url && template.thumbnail_url.startsWith('http')
                     ? template.thumbnail_url
-                    : 'http://localhost:5000' + template.thumbnail_url;
+                    : 'https://resume-backend-54se.onrender.com' + template.thumbnail_url;
 
                 const templateId = template.template_key || template.id;
                 const hasPhoto = Number(template.has_photo || 0);
@@ -401,7 +401,7 @@
 
         async function loadDynamicTemplates() {
             try {
-                const response = await fetch('http://localhost:5000/api/templates/all');
+                const response = await fetch('https://resume-backend-54se.onrender.com/api/templates/all');
                 const data = await response.json();
 
                 if (!data.success || !Array.isArray(data.templates)) {
@@ -498,7 +498,7 @@
                 localStorage.setItem('selected_template_layout_key', firstTemplate.layout_key || 'modern_sidebar');
                 localStorage.setItem('selected_template_default_color', firstTemplate.default_color || '#2563eb');
                 localStorage.setItem('selected_template_category', firstTemplate.category || 'Professional');
-                localStorage.setItem('selected_template_thumbnail_url', firstTemplate.thumbnail_url && firstTemplate.thumbnail_url.startsWith('http') ? firstTemplate.thumbnail_url : 'http://localhost:5000' + (firstTemplate.thumbnail_url || ''));
+                localStorage.setItem('selected_template_thumbnail_url', firstTemplate.thumbnail_url && firstTemplate.thumbnail_url.startsWith('http') ? firstTemplate.thumbnail_url : 'https://resume-backend-54se.onrender.com' + (firstTemplate.thumbnail_url || ''));
                 localStorage.setItem('resume_accent_color', firstTemplate.default_color || '#2563eb');
             }
 
@@ -515,7 +515,7 @@
             finalNextBtn.disabled = true;
 
             try {
-                const response = await fetch('http://localhost:5000/api/resumes/create', {
+                const response = await fetch('https://resume-backend-54se.onrender.com/api/resumes/create', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

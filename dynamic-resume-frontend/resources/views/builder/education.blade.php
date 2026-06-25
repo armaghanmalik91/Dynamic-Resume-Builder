@@ -3423,7 +3423,7 @@ function applySelectedTemplateBadge(resume) {
             if (!token || !resumeId) return;
 
             try {
-                const res = await fetch(`http://localhost:5000/api/resumes/get/${resumeId}`, {
+                const res = await fetch(`https://resume-backend-54se.onrender.com/api/resumes/get/${resumeId}`, {
                     headers: {
                         'Authorization': 'Bearer ' + token
                     }
@@ -3449,7 +3449,7 @@ function applySelectedTemplateBadge(resume) {
             }
 
             try {
-                const res = await fetch("http://localhost:5000/api/resumes/update-template", {
+                const res = await fetch("https://resume-backend-54se.onrender.com/api/resumes/update-template", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -3632,13 +3632,13 @@ function applySelectedTemplateBadge(resume) {
         // Data Population Pipeline
         async function loadData() {
             try {
-                const resH = await fetch(`http://localhost:5000/api/resumes/get/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
+                const resH = await fetch(`https://resume-backend-54se.onrender.com/api/resumes/get/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
                 const dH = await resH.json();
                 if(dH.success) {
                     document.getElementById('prev_name').innerText = dH.resume.first_name + " " + (dH.resume.last_name || '');
                     document.getElementById('prev_contact').innerText = `${dH.resume.city || ''}, ${dH.resume.country || ''} | ${dH.resume.phone || ''} | ${dH.resume.email || ''}`;
                 }
-                const resE = await fetch(`http://localhost:5000/api/resumes/education/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
+                const resE = await fetch(`https://resume-backend-54se.onrender.com/api/resumes/education/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
                 const dE = await resE.json();
                 if(dE.success && dE.education) {
                     const e = dE.education;
@@ -3674,7 +3674,7 @@ function applySelectedTemplateBadge(resume) {
                 education_description: document.getElementById('editor').innerHTML
             };
             try {
-                const res = await fetch('http://localhost:5000/api/resumes/education', {
+                const res = await fetch('https://resume-backend-54se.onrender.com/api/resumes/education', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
                     body: JSON.stringify(payload)
@@ -3706,7 +3706,7 @@ function applySelectedTemplateBadge(resume) {
         let pendingPreviewTemplate = null;
 
         function getTemplateKeyValue(template) { return template?.template_key || String(template?.id || ''); }
-        function getTemplateImageUrl(thumbnail) { if (!thumbnail) return ''; return thumbnail.startsWith('http') ? thumbnail : 'http://localhost:5000' + thumbnail; }
+        function getTemplateImageUrl(thumbnail) { if (!thumbnail) return ''; return thumbnail.startsWith('http') ? thumbnail : 'https://resume-backend-54se.onrender.com' + thumbnail; }
         function setImageOrFallback(img, fallback, thumbnail) {
             if (!img) return;
             const imageUrl = getTemplateImageUrl(thumbnail);
@@ -3728,7 +3728,7 @@ function applySelectedTemplateBadge(resume) {
                 return;
             }
 
-            const imageUrl = thumbnail && thumbnail.startsWith('http') ? thumbnail : (thumbnail ? 'http://localhost:5000' + thumbnail : '');
+            const imageUrl = thumbnail && thumbnail.startsWith('http') ? thumbnail : (thumbnail ? 'https://resume-backend-54se.onrender.com' + thumbnail : '');
             [
                 [miniImg, miniFallback],
                 [modalImg, modalFallback]
@@ -3775,7 +3775,7 @@ function applySelectedTemplateBadge(resume) {
         async function loadSelectedTemplateForEducation() {
             if (!token || !resumeId) return;
             try {
-                const res = await fetch(`http://localhost:5000/api/resumes/get/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
+                const res = await fetch(`https://resume-backend-54se.onrender.com/api/resumes/get/${resumeId}`, { headers: { 'Authorization': 'Bearer ' + token } });
                 const data = await res.json();
                 if (data.success && data.resume) {
                     applySelectedTemplateBadge(data.resume);
@@ -3839,7 +3839,7 @@ function applySelectedTemplateBadge(resume) {
             if(!pendingPreviewTemplate || !getTemplateKeyValue(pendingPreviewTemplate)){ alert('Please select a template first.'); return; }
             const oldHtml=changeTemplateBtn.innerHTML; changeTemplateBtn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Updating...'; changeTemplateBtn.disabled=true;
             try{
-                const res=await fetch('http://localhost:5000/api/resumes/update-template',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({resume_id:resumeId,template_id:getTemplateKeyValue(pendingPreviewTemplate)})});
+                const res=await fetch('https://resume-backend-54se.onrender.com/api/resumes/update-template',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({resume_id:resumeId,template_id:getTemplateKeyValue(pendingPreviewTemplate)})});
                 const data=await res.json();
                 if(data.success && data.resume){ localStorage.setItem('selected_template',getTemplateKeyValue(pendingPreviewTemplate)); applySelectedTemplateBadge(data.resume); updateModalCurrentTemplateInfo(data.resume); pendingPreviewTemplate=null; renderPreviewTemplates(); }
                 else alert(data.message || 'Template update failed.');
@@ -3859,7 +3859,7 @@ function applySelectedTemplateBadge(resume) {
             document.body.style.overflow='hidden';
             previewModal.classList.remove('hidden'); previewModal.classList.add('flex');
             pendingPreviewTemplate=null; syncBigPreviewEducation(); await loadSelectedTemplateForEducation();
-            try{ const res=await fetch('http://localhost:5000/api/templates/all'); const data=await res.json(); previewTemplatesCache=data.success?(data.templates||[]):[]; renderPreviewTemplates(); }
+            try{ const res=await fetch('https://resume-backend-54se.onrender.com/api/templates/all'); const data=await res.json(); previewTemplatesCache=data.success?(data.templates||[]):[]; renderPreviewTemplates(); }
             catch(error){ dynamicTemplatesGrid.innerHTML='<p class="text-red-500 text-xs">Failed to load templates.</p>'; }
         });
         function closeModal(){ previewModal.classList.add('hidden'); previewModal.classList.remove('flex'); document.body.style.overflow=''; }
@@ -3890,14 +3890,14 @@ function applySelectedTemplateBadge(resume) {
             }
 
             if (clean.startsWith("/uploads/")) {
-                return "http://localhost:5000" + clean;
+                return "https://resume-backend-54se.onrender.com" + clean;
             }
 
             if (clean.startsWith("uploads/")) {
-                return "http://localhost:5000/" + clean;
+                return "https://resume-backend-54se.onrender.com/" + clean;
             }
 
-            return "http://localhost:5000/uploads/templates/" + clean;
+            return "https://resume-backend-54se.onrender.com/uploads/templates/" + clean;
         }
 
         function resolveElement(ref) {
@@ -3986,7 +3986,7 @@ function applySelectedTemplateBadge(resume) {
             }
 
             try {
-                const res = await fetch("http://localhost:5000/api/templates/all");
+                const res = await fetch("https://resume-backend-54se.onrender.com/api/templates/all");
                 const data = await res.json();
 
                 if (!data.success || !Array.isArray(data.templates)) {
@@ -4088,7 +4088,7 @@ function applySelectedTemplateBadge(resume) {
 
     
         /* FINAL FIX: robust selected-template image resolver for live preview + modal */
-        const TEMPLATE_API_BASE_FINAL = "http://localhost:5000";
+        const TEMPLATE_API_BASE_FINAL = "https://resume-backend-54se.onrender.com";
 
         function finalTemplateUrl(thumbnail) {
             if (!thumbnail) return "";
@@ -7733,7 +7733,7 @@ body > .absolute.bottom-0 a {
     function q(id) { return document.getElementById(id); }
     function rid() { return localStorage.getItem('current_resume_id') || 'no_resume'; }
     function flowDoneKey() { return 'resume_education_intro_flow_done_' + rid(); }
-    function apiBase() { return 'http://localhost:5000'; }
+    function apiBase() { return 'https://resume-backend-54se.onrender.com'; }
     function tokenValue() { return localStorage.getItem('resume_token') || ''; }
 
     function clean(value) {
@@ -8217,7 +8217,7 @@ body > .absolute.bottom-0 a {
     function q(id) { return document.getElementById(id); }
     function clean(value) { return String(value || '').trim(); }
     function rid() { return localStorage.getItem('current_resume_id') || 'no_resume'; }
-    function apiBase() { return 'http://localhost:5000'; }
+    function apiBase() { return 'https://resume-backend-54se.onrender.com'; }
     function tokenValue() { return localStorage.getItem('resume_token') || ''; }
 
     function showScreen(screenName) {
@@ -9597,7 +9597,7 @@ body > .absolute.bottom-0 a {
         var tk = getToken();
         if (!rid || !tk) return null;
         try {
-            var res = await fetch('http://localhost:5000/api/resumes/education/' + rid, { headers: { 'Authorization': 'Bearer ' + tk } });
+            var res = await fetch('https://resume-backend-54se.onrender.com/api/resumes/education/' + rid, { headers: { 'Authorization': 'Bearer ' + tk } });
             var data = await res.json();
             if (data && data.success && data.education && hasEducation(data.education)) {
                 return normalizeEntry(data.education);
@@ -9610,7 +9610,7 @@ body > .absolute.bottom-0 a {
         var payload = normalizeEntry(entry);
         delete payload._ghost_id;
         try {
-            await fetch('http://localhost:5000/api/resumes/education', {
+            await fetch('https://resume-backend-54se.onrender.com/api/resumes/education', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
                 body: JSON.stringify(payload)
@@ -9629,7 +9629,7 @@ body > .absolute.bottom-0 a {
         try {
             var serverPayload = normalizeEntry(payload);
             delete serverPayload._ghost_id;
-            var res = await fetch('http://localhost:5000/api/resumes/education', {
+            var res = await fetch('https://resume-backend-54se.onrender.com/api/resumes/education', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
                 body: JSON.stringify(serverPayload)

@@ -796,7 +796,7 @@
     </div>
 
     <script>
-        const API_BASE = "http://localhost:5000";
+        const API_BASE = "https://resume-backend-54se.onrender.com";
 
         const token = localStorage.getItem("resume_token");
         let resumeId = localStorage.getItem("current_resume_id");
