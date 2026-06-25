@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
   port: 25293,
   user: 'avnadmin',
   // Line number 8 ko aisa kar dein:
-password: process.env.DB_PASSWORD,
+  password: process.env.DB_PASSWORD,
   database: 'defaultdb',
   multipleStatements: true
   
