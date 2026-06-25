@@ -6,8 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-// Sahi Aur Dynamic Transporter Logic
-// Direct and Robust Mailtrap Transporter
+// Robust Direct Mailtrap Transporter (No Localhost or SSL/TLS Fallback Issues)
 const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
@@ -37,12 +36,8 @@ async function ensureAdminAuthTable() {
         )
     `);
 
-    const adminEmail = String(process.env.ADMIN_EMAIL || "").trim().toLowerCase();
-    const defaultPassword = String(process.env.ADMIN_DEFAULT_PASSWORD || "").trim();
-
-    if (!adminEmail || !defaultPassword) {
-        throw new Error("ADMIN_EMAIL or ADMIN_DEFAULT_PASSWORD missing in .env");
-    }
+    const adminEmail = String(process.env.ADMIN_EMAIL || "armaghanmalik81@gmail.com").trim().toLowerCase();
+    const defaultPassword = String(process.env.ADMIN_DEFAULT_PASSWORD || "admin123").trim();
 
     const [admins] = await db.query(
         "SELECT * FROM admin_auth WHERE LOWER(TRIM(email)) = ?",
@@ -136,13 +131,12 @@ exports.register = async (req, res) => {
             [name, email, hashedPassword, otp]
         );
 
-// Register ke andar isko aise badlein:
-await transporter.sendMail({
-    from: `"Resume Builder Live Test" <8fb2ff78cd1124>`, // Yahan "Live Test" likh dein
-    to: email,
-    subject: "Your Verification Code",
-    text: `Aapka verification code yeh hai: ${otp}`
-});
+        await transporter.sendMail({
+            from: `"Resume Builder Live Test" <8fb2ff78cd1124>`,
+            to: email,
+            subject: "Your Verification Code",
+            text: `Aapka verification code yeh hai: ${otp}`
+        });
 
         res.status(201).json({
             success: true,
@@ -464,7 +458,7 @@ exports.forgotAdminPassword = async (req, res) => {
         }
 
         const requestedEmail = String(email).trim().toLowerCase();
-        const adminEmail = String(process.env.ADMIN_EMAIL || "").trim().toLowerCase();
+        const adminEmail = String(process.env.ADMIN_EMAIL || "armaghanmalik81@gmail.com").trim().toLowerCase();
 
         console.log("Requested Email:", requestedEmail);
         console.log("ENV Admin Email:", adminEmail);
@@ -485,7 +479,7 @@ exports.forgotAdminPassword = async (req, res) => {
         );
 
         await transporter.sendMail({
-            from: `"Resume Builder Admin" <${process.env.MAIL_USER}>`,
+            from: `"Resume Builder Admin" <8fb2ff78cd1124>`,
             to: requestedEmail,
             subject: "Admin Password Reset Code",
             text: `Aapka admin password reset code yeh hai: ${code}. Yeh code 10 minutes tak valid hai.`
@@ -603,7 +597,6 @@ exports.resetAdminPassword = async (req, res) => {
     }
 };
 
-
 // User Forgot Password: Send Reset Code
 exports.forgotUserPassword = async (req, res) => {
     const { email } = req.body;
@@ -650,13 +643,12 @@ exports.forgotUserPassword = async (req, res) => {
             [code, expiresAt, user.id]
         );
 
-// Register ke andar isko aise badlein:
-await transporter.sendMail({
-    from: `"Resume Builder Live Test" <8fb2ff78cd1124>`, // Yahan "Live Test" likh dein
-    to: email,
-    subject: "Your Verification Code",
-    text: `Aapka verification code yeh hai: ${otp}`
-});
+        await transporter.sendMail({
+            from: `"Resume Builder Live Test" <8fb2ff78cd1124>`, 
+            to: requestedEmail,
+            subject: "Your Password Reset Code",
+            text: `Aapka password reset code yeh hai: ${code}. Yeh code 10 minutes tak valid hai.`
+        });
 
         return res.status(200).json({
             success: true,
