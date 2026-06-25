@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 // Sahi Aur Dynamic Transporter Logic
-// Sahi Aur Dynamic Transporter Logic (Bina TLS/SSL Error ke)
+// Dynamic Transporter with Hardcoded Mailtrap Fallback to avoid 127.0.0.1 issue
 const transporter = nodemailer.createTransport(
     process.env.MAIL_SERVICE === "gmail" 
         ? {
@@ -17,18 +17,18 @@ const transporter = nodemailer.createTransport(
                   pass: process.env.MAIL_PASS
               },
               tls: {
-                  rejectUnauthorized: false // Cloud mail system error hal karne ke liye
+                  rejectUnauthorized: false
               }
           }
         : {
-              host: process.env.SMTP_HOST || "sandbox.smtp.mailtrap.io",
-              port: Number(process.env.SMTP_PORT || 2525),
+              host: "sandbox.smtp.mailtrap.io", // Direct Mailtrap Server URL
+              port: 2525,                       // Direct Mailtrap Port
               auth: {
-                  user: process.env.MAIL_USER,
-                  pass: process.env.MAIL_PASS
+                  user: process.env.MAIL_USER || "8fb2ff78cd1124",
+                  pass: process.env.MAIL_PASS || "7b823e20e8b1b5"
               },
               tls: {
-                  rejectUnauthorized: false // Mailtrap handshake live cloud par fix karne ke liye
+                  rejectUnauthorized: false
               }
           }
 );
