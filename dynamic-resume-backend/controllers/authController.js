@@ -6,14 +6,25 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-// Gmail transporter
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
-    }
-});
+// Naya Dynamic Transporter (Gmail aur Mailtrap dono ke liye auto-adjust hoga)
+const transporter = nodemailer.createTransport(
+    process.env.MAIL_SERVICE === "gmail" 
+        ? {
+              service: "gmail",
+              auth: {
+                  user: process.env.MAIL_USER,
+                  pass: process.env.MAIL_PASS
+              }
+          }
+        : {
+              host: process.env.SMTP_HOST || "sandbox.smtp.mailtrap.io",
+              port: Number(process.env.SMTP_PORT || 2525),
+              auth: {
+                  user: process.env.MAIL_USER,
+                  pass: process.env.MAIL_PASS
+              }
+          }
+);
 
 function generateSixDigitCode() {
     return Math.floor(100000 + Math.random() * 900000).toString();
