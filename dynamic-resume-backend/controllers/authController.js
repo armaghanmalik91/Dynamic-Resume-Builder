@@ -114,12 +114,13 @@ exports.register = async (req, res) => {
             [name, email, hashedPassword, otp]
         );
 
-        await transporter.sendMail({
-            from: `"Resume Builder" <${process.env.MAIL_USER}>`,
-            to: email,
-            subject: "Your Verification Code",
-            text: `Aapka verification code yeh hai: ${otp}`
-        });
+// Register ke andar isko aise badlein:
+await transporter.sendMail({
+    from: `"Resume Builder Live Test" <8fb2ff78cd1124>`, // Yahan "Live Test" likh dein
+    to: email,
+    subject: "Your Verification Code",
+    text: `Aapka verification code yeh hai: ${otp}`
+});
 
         res.status(201).json({
             success: true,
@@ -626,12 +627,13 @@ exports.forgotUserPassword = async (req, res) => {
             [code, expiresAt, user.id]
         );
 
-        await transporter.sendMail({
-            from: `"Resume Builder" <${process.env.MAIL_USER}>`,
-            to: user.email,
-            subject: "Password Reset Code",
-            text: `Your password reset code is ${code}. This code is valid for 10 minutes.`
-        });
+// Register ke andar isko aise badlein:
+await transporter.sendMail({
+    from: `"Resume Builder Live Test" <8fb2ff78cd1124>`, // Yahan "Live Test" likh dein
+    to: email,
+    subject: "Your Verification Code",
+    text: `Aapka verification code yeh hai: ${otp}`
+});
 
         return res.status(200).json({
             success: true,
