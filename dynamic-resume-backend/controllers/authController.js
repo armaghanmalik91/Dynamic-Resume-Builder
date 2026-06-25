@@ -7,31 +7,18 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 // Sahi Aur Dynamic Transporter Logic
-// Dynamic Transporter with Hardcoded Mailtrap Fallback to avoid 127.0.0.1 issue
-const transporter = nodemailer.createTransport(
-    process.env.MAIL_SERVICE === "gmail" 
-        ? {
-              service: "gmail",
-              auth: {
-                  user: process.env.MAIL_USER,
-                  pass: process.env.MAIL_PASS
-              },
-              tls: {
-                  rejectUnauthorized: false
-              }
-          }
-        : {
-              host: "sandbox.smtp.mailtrap.io", // Direct Mailtrap Server URL
-              port: 2525,                       // Direct Mailtrap Port
-              auth: {
-                  user: process.env.MAIL_USER || "8fb2ff78cd1124",
-                  pass: process.env.MAIL_PASS || "7b823e20e8b1b5"
-              },
-              tls: {
-                  rejectUnauthorized: false
-              }
-          }
-);
+// Direct and Robust Mailtrap Transporter
+const transporter = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+        user: "8fb2ff78cd1124", 
+        pass: "7b823e20e8b1b5"  
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+});
 
 function generateSixDigitCode() {
     return Math.floor(100000 + Math.random() * 900000).toString();
