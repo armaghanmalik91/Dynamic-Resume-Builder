@@ -63,6 +63,27 @@ async function ensureAdminAuthTable() {
     }
 }
 
+// Users table ko automatic create karne ka logic
+async function ensureUsersTable() {
+    await db.query(`
+        CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            otp_code VARCHAR(10) NULL,
+            is_verified TINYINT DEFAULT 0,
+            reset_code VARCHAR(10) NULL,
+            reset_expires DATETIME NULL,
+            experience_level VARCHAR(50) NULL,
+            is_student TINYINT NULL,
+            education_level VARCHAR(100) NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+    console.log("✅ Users table checked/created successfully.");
+}
+
 async function ensureUserPasswordResetColumns() {
     const databaseName = process.env.DB_NAME || process.env.MYSQL_DATABASE || "dynamic_resume_db";
 
@@ -94,6 +115,7 @@ exports.register = async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
+        await ensureUsersTable(); // Register karne se pehle table check karega
         const [existingUser] = await db.query(
             "SELECT * FROM users WHERE email = ?",
             [email]
@@ -587,6 +609,7 @@ exports.forgotUserPassword = async (req, res) => {
     const { email } = req.body;
 
     try {
+        await ensureUsersTable(); // Forgot password chalne se pehle table check karega
         await ensureUserPasswordResetColumns();
 
         if (!email) {
