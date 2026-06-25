@@ -6,7 +6,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-// Naya Dynamic Transporter (Gmail aur Mailtrap dono ke liye auto-adjust hoga)
+// Sahi Aur Dynamic Transporter Logic
+// Sahi Aur Dynamic Transporter Logic (Bina TLS/SSL Error ke)
 const transporter = nodemailer.createTransport(
     process.env.MAIL_SERVICE === "gmail" 
         ? {
@@ -14,6 +15,9 @@ const transporter = nodemailer.createTransport(
               auth: {
                   user: process.env.MAIL_USER,
                   pass: process.env.MAIL_PASS
+              },
+              tls: {
+                  rejectUnauthorized: false // Cloud mail system error hal karne ke liye
               }
           }
         : {
@@ -22,6 +26,9 @@ const transporter = nodemailer.createTransport(
               auth: {
                   user: process.env.MAIL_USER,
                   pass: process.env.MAIL_PASS
+              },
+              tls: {
+                  rejectUnauthorized: false // Mailtrap handshake live cloud par fix karne ke liye
               }
           }
 );
