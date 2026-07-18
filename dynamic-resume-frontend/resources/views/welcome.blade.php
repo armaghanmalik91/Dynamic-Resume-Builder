@@ -2661,7 +2661,7 @@ input[type="password"]::-webkit-textfield-decoration-container {
             <div class="lg:col-span-2"> 
                 <div class="text-3xl font-black text-white mb-6 flex items-center"> <i class="fa-solid fa-layer-group text-purple-500 mr-3"></i> ResumeBuilder </div> 
                 <p class="text-gray-400 text-sm leading-relaxed mb-8 pr-10"> Our online resume builder makes it simple to create a professional resume from your phone, laptop, or tablet. We empower job seekers with modern, dynamic, and professional tools. </p> 
-                <div class="flex space-x-5 text-gray-400 text-2xl"> <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin"></i></a> <a href="#" class="hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a> <i class="fa-brands fa-instagram hover:text-white transition"></i> <i class="fa-brands fa-tiktok hover:text-white transition"></i> <i class="fa-brands fa-facebook hover:text-white transition"></i> </div> 
+                <div class="flex space-x-5 text-gray-400 text-2xl"><a href="#" class="hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a> <i class="fa-brands fa-instagram hover:text-white transition"></i> <i class="fa-brands fa-tiktok hover:text-white transition"></i> <i class="fa-brands fa-facebook hover:text-white transition"></i><a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin"></i></a> </div> 
             </div> 
             <div> 
                 <h4 class="text-white font-bold mb-6 tracking-wide uppercase text-sm">Build Your Resume</h4> 

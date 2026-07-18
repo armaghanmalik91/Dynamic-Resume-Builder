@@ -1948,7 +1948,7 @@ body.skills-intro-active .core-cv-scrollbox { overflow: hidden !important; paddi
     </div>
 
     <script>
-        const API_BASE = "https://resume-backend-54se.onrender.com";
+        const API_BASE = "http://localhost:5000";
         const token = localStorage.getItem("resume_token");
         const resumeId = localStorage.getItem("current_resume_id");
 

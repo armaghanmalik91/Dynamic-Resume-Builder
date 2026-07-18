@@ -1,58 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Dynamic Resume Builder & Job Matching Engine
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An advanced, full-stack application engineered with Laravel to streamline the professional resume creation process while simultaneously integrating a smart onboarding system that connects users to ideal job postings based on targeted experience tracking.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📺 System Walkthrough & Application Interfaces
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🌐 1. Main Landing Page & Core Navigation Hub
+*An interactive gateway featuring modern navigation dropdowns, categorized template previews, a dynamic testimonial showcase, and a structured FAQ module designed to capture initial user conversions.*
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<video src="./public/screenshots/20260718-1600-33.3697608.mp4" width="100%" controls></video>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🔑 2. Secure User Authentication Gateway
+*The account access checkpoint supporting traditional registration, contextual logins, and OAuth-driven 'Sign Up with Google' integrations to ensure smooth onboarding.*
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![User Authentication Gateway](./public/screenshots/Screenshot%202026-07-18%20211350.png)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+### 📊 3. Core User Dashboard & Automated Job Ledger
+*The principal control hub where consumers manage historical resumes and explore automated, real-time job matching systems that map career listings directly below user activity statistics.*
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+<video src="./public/screenshots/20260718-1618-53.3932732.mp4" width="100%" controls></video>
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
-```
+### 📈 4. Onboarding & Intelligent Experience Profiling
+*A critical wizard module where users document exact industry milestones. The underlying system automatically calculates, filters, and displays specific relevant employment vacancies mapped directly to verified skills.*
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+![Experience Profiling](./public/screenshots/Screenshot%202026-07-18%20212608.png)
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🎓 5. Conditional Academic Status Verification
+*An intelligent conditional layout engine. If a user inputs less than 3 years of work experience, the platform branches out to evaluate student status, academic tiers, and learning tracking to adapt document suggestions.*
 
-## Code of Conduct
+![Academic Verification](./public/screenshots/Screenshot%202026-07-18%20212830.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+### 🎨 6. Filtered Resume Template Gallery
+*A dedicated interface that lets users search and categorize layouts, adjusting selections instantly according to career stages and student profiles.*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Template Gallery](./public/screenshots/Screenshot%202026-07-18%20214412.png)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🔄 7. Base Document Creation Protocol
+*An interface offering flexible starting points: users can load and overwrite existing resume templates to revise details or select a fresh base layout to build from scratch.*
+
+![Creation Protocol](./public/screenshots/Screenshot%202026-07-18%20214521.png)
+
+---
+
+### 📞 8. Standardized Contact Information Node
+*A dedicated data-entry field for structural metadata, processing essential information like full legal names, contact numbers, and addresses.*
+
+![Contact Information Node](./public/screenshots/Screenshot%202026-07-18%20214732.png)
+
+---
+
+### 🛠️ 9. Comprehensive Data Entry to Document Finalization Workflow
+*A continuous video walkthrough tracking full data synchronization from contact setup to final resume building. Includes live data validation: if a user navigates away without confirming a step, a prominent "Add Missing Information" alert appears under the respective tab.*
+
+<video src="./public/screenshots/20260718-1653-02.3159419.mp4" width="100%" controls></video>
+
+---
+
+### 🏛️ 10. Administrative Access Terminal
+*A hardened portal reserved exclusively for platform managers. It uses an immutable, predefined root email login allowing managers to update their security passwords while blocking public signups.*
+
+![Administrative Access Terminal](./public/screenshots/Screenshot%202026-07-18%20215935.png)
+
+---
+
+### ⚙️ 11. Global Admin Template Control Center
+*The administrative dashboard workspace where team leads upload new designs. Uploads sync instantly, updating the consumer-side template options across the platform.*
+
+![Admin Template Control Center](./public/screenshots/Screenshot%202026-07-18%20220245.png)
+
+---
+
+## 🛠️ Technological Architecture Stack
+- **Backend Architecture:** Laravel Framework (PHP) implementing MVC design patterns, protected route middleware, and dynamic data validation rules.
+- **Frontend Layer:** Blade Templating Engine, CSS3 Layout Modules, and Vanilla JavaScript UI controllers.
+- **Database Engine:** Relational schema modeling optimized for user profiles, document states, and conditional query caching.
