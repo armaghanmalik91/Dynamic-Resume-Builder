@@ -9,7 +9,7 @@ An advanced, full-stack application engineered with Laravel to streamline the pr
 ### 🌐 1. Main Landing Page & Core Navigation Hub
 *An interactive gateway featuring modern navigation dropdowns, categorized template previews, a dynamic testimonial showcase, and a structured FAQ module designed to capture initial user conversions.*
 
-<video src="dynamic-resume-frontend/public/screenshots/20260718-1600-33.3697608.mp4" width="100%" controls></video>
+[▶️ Click Here to Watch Landing Page & Navigation Video Walkthrough](https://github.com/armaghanmalik91/Dynamic-Resume-Builder/blob/main/dynamic-resume-frontend/public/screenshots/20260718-1600-33.3697608.mp4)
 
 ---
 
@@ -23,7 +23,7 @@ An advanced, full-stack application engineered with Laravel to streamline the pr
 ### 📊 3. Core User Dashboard & Automated Job Ledger
 *The principal control hub where consumers manage historical resumes and explore automated, real-time job matching systems that map career listings directly below user activity statistics.*
 
-<video src="dynamic-resume-frontend/public/screenshots/20260718-1618-53.3932732.mp4" width="100%" controls></video>
+[▶️ Click Here to Watch Core User Dashboard & Job Ledger Video Walkthrough](https://github.com/armaghanmalik91/Dynamic-Resume-Builder/blob/main/dynamic-resume-frontend/public/screenshots/20260718-1618-53.3932732.mp4)
 
 ---
 
@@ -65,7 +65,7 @@ An advanced, full-stack application engineered with Laravel to streamline the pr
 ### 🛠️ 9. Comprehensive Data Entry to Document Finalization Workflow
 *A continuous video walkthrough tracking full data synchronization from contact setup to final resume building. Includes live data validation: if a user navigates away without confirming a step, a prominent "Add Missing Information" alert appears under the respective tab.*
 
-<video src="dynamic-resume-frontend/public/screenshots/20260718-1653-02.3159419.mp4" width="100%" controls></video>
+[▶️ Click Here to Watch Full Workflow & Data Finalization Video Walkthrough](https://github.com/armaghanmalik91/Dynamic-Resume-Builder/blob/main/dynamic-resume-frontend/public/screenshots/20260718-1653-02.3159419.mp4)
 
 ---
 
